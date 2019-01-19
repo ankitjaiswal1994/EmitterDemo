@@ -18,20 +18,28 @@ class ViewController: UIViewController {
     
     func animateSnow() {
         let emitter = CAEmitterLayer()
-        let cell = CAEmitterCell()
-        cell.birthRate = 2
-        cell.lifetime = 50
-        cell.contents = UIImage(named: "drop")?.cgImage
-        cell.velocity = 40
-        cell.emissionLongitude = 180 * (.pi/180)
-        cell.emissionRange = 45 * (.pi/180)
-        cell.scale = 0.5
-        cell.scaleRange = 0.2
+        let snowflakeEmitterCell = CAEmitterCell()
         
-        emitter.emitterCells = [cell]
-        emitter.emitterShape = CAEmitterLayerEmitterShape.line
-        emitter.emitterPosition = CGPoint(x: view.frame.width/2, y: 0)
-        emitter.emitterSize = CGSize.init(width: view.frame.width, height: 2)
+        snowflakeEmitterCell.color = UIColor.white.cgColor
+        snowflakeEmitterCell.contents = UIImage.init(named: "drop")?.cgImage
+        snowflakeEmitterCell.lifetime = 5.5
+        snowflakeEmitterCell.birthRate = 200
+        snowflakeEmitterCell.blueRange = 0.15
+        snowflakeEmitterCell.alphaRange = 0.4
+        snowflakeEmitterCell.velocity = 10
+        snowflakeEmitterCell.velocityRange = 300
+        snowflakeEmitterCell.scale = 0.4
+        snowflakeEmitterCell.scaleRange = 1.3
+        snowflakeEmitterCell.emissionRange = CGFloat.pi / 2
+        snowflakeEmitterCell.emissionLongitude = CGFloat.pi
+        snowflakeEmitterCell.yAcceleration = -70
+        snowflakeEmitterCell.scaleSpeed = -0.1
+        snowflakeEmitterCell.alphaSpeed = -0.05
+
+        emitter.emitterCells = [snowflakeEmitterCell]
+        emitter.emitterShape = CAEmitterLayerEmitterShape.rectangle
+        emitter.emitterPosition = CGPoint(x: view.bounds.width/2, y: view.bounds.height)
+        emitter.emitterSize = view.bounds.size
         
         
         view.layer.addSublayer(emitter)
