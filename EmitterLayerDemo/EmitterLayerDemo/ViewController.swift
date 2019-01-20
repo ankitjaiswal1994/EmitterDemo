@@ -18,27 +18,21 @@ class ViewController: UIViewController {
     
     func animateSnow() {
         let emitter = CAEmitterLayer()
-        let snowflakeEmitterCell = CAEmitterCell()
-        
-        snowflakeEmitterCell.color = UIColor.white.cgColor
-        snowflakeEmitterCell.contents = UIImage.init(named: "drop")?.cgImage
-        snowflakeEmitterCell.lifetime = 5.5
-        snowflakeEmitterCell.birthRate = 200
-        snowflakeEmitterCell.blueRange = 0.15
-        snowflakeEmitterCell.alphaRange = 0.4
-        snowflakeEmitterCell.velocity = 10
-        snowflakeEmitterCell.velocityRange = 300
-        snowflakeEmitterCell.scale = 0.4
-        snowflakeEmitterCell.scaleRange = 1.3
-        snowflakeEmitterCell.emissionRange = CGFloat.pi / 2
-        snowflakeEmitterCell.emissionLongitude = CGFloat.pi
-        snowflakeEmitterCell.yAcceleration = -70
-        snowflakeEmitterCell.scaleSpeed = -0.1
-        snowflakeEmitterCell.alphaSpeed = -0.05
+        let flameEmitterCell = CAEmitterCell()
 
-        emitter.emitterCells = [snowflakeEmitterCell]
-        emitter.emitterShape = CAEmitterLayerEmitterShape.rectangle
-        emitter.emitterPosition = CGPoint(x: view.bounds.width/2, y: view.bounds.height)
+        flameEmitterCell.color = UIColor.init(red: 1.0, green: 0.5, blue: 0.2, alpha: 1.0).cgColor
+        flameEmitterCell.contents = UIImage.init(named: "drop")?.cgImage
+        flameEmitterCell.lifetime = 5.0
+        flameEmitterCell.birthRate = 150
+        flameEmitterCell.alphaSpeed = -0.4
+        flameEmitterCell.velocity = 50
+        flameEmitterCell.velocityRange = 50
+        flameEmitterCell.emissionRange = CGFloat.pi * 2
+
+
+        emitter.emitterCells = [flameEmitterCell]
+        emitter.renderMode = CAEmitterLayerRenderMode.additive
+        emitter.emitterPosition = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
         emitter.emitterSize = view.bounds.size
         
         
